@@ -1,0 +1,5 @@
+(define (sum-of-larger x y z)
+  (cond ((> x y) (cond ((> z y) (+ x z))
+                       (else (+ x y))))
+        ((> x z) (+ x y))
+        (else (+ y z))))
