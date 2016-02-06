@@ -49,3 +49,22 @@
 # 1.6
 
 若求值为应用序，new-if调用时会先将then-clause和else-clause都求值，这会导致递归调用无限递归下去。
+
+# 1.7
+
+`good-enough?`的误差值固定为0.001，这会导致对于较小的数误差较大(如0.00001，其平方根为0.001，所求得值可能为真实值的两倍)，而对于较大的数又运算次数过多(其相对精度变大)。
+
+新的`good-enough?`如下:
+
+```scheme
+(define (good-enough? guess old-guess x)
+  (< (abs (- 1.0 (/ guess old-guess))) 0.001))
+
+(define (sqrt-iter guess old-guess x)
+  (if (good-enough? guess old-guess x)
+      guess
+      (sqrt-iter (improve guess x) guess x)))
+
+(define (sqrt x)
+  (sqrt-iter 1.0 0.1 x))
+```
