@@ -30,6 +30,16 @@
    (* 3 (- 6 2) (- 2 7)))
 ```
 
+# 1.3
+
+```scheme
+(define (sum-of-larger x y z)
+  (cond ((> x y) (cond ((> z y) (+ x z))
+                       (else (+ x y))))
+        ((> x z) (+ x y))
+        (else (+ y z))))
+```
+
 # 1.4
 
 ```scheme
