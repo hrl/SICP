@@ -170,3 +170,9 @@
         ((or (= n 1) (= k 1) (= n k)) 1)
         (else (+ (pascal-triangle (- n 1) (- k 1)) (pascal-triangle (- n 1) k)))))
 ```
+
+# 1.15
+
+a) 5
+
+b) logn
