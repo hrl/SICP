@@ -191,3 +191,21 @@ b) logn
         ((even? n) (fast-expt-iter a (square b) (/ n 2)))
         (else (fast-expt-iter (* a b) b (- n 1)))))
 ```
+
+# 1.17
+
+```scheme
+(define (even? n)
+  (= (remainder n 2) 0))
+
+(define (half x)
+  (/ x 2))
+
+(define (double x)
+  (+ x x))
+
+(define (* a b)
+  (cond ((= b 1) a)
+        ((even? b) (* (double a) (half b)))
+        (else (+ (* a (+ b -1)) a))))
+```
