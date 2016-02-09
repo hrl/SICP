@@ -733,3 +733,17 @@ q' = 2pq + q^2
   (cond ((< n 1) (lambda (x) x))
         (else (compose f (repeated f (- n 1))))))
 ```
+
+# 1.44
+
+```scheme
+(define (smooth f)
+  (define dx 0.0001)
+  (lambda (x) (/ (+ (f (- x dx))
+                    (f x)
+                    (f (+ x dx)))
+                 3)))
+
+(define (smooth-n f n)
+  ((repeated smooth n) f))
+```
