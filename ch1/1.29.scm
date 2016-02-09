@@ -1,0 +1,21 @@
+(define (cube x) (* x x x))
+
+(define (sum term a next b)
+  (if (> a b)
+      0
+      (+ (term a)
+         (sum term (next a) next b))))
+
+(define (simpson f a b raw-n)
+  (define n (cond ((even? raw-n) raw-n)
+                  (else (+ 1 raw-n))))
+  (define h (/ (- b a) n))
+  (define (term k)
+    (* (f (+ a (* k h)))
+       (cond ((or (= k 0) (= k n)) 1)
+             ((even? k) 2)
+             (else 4))))
+  (define (next k)
+    (+ 1 k))
+  (* (sum term 0 next n)
+     (/ h 3)))
