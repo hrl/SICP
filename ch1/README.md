@@ -698,3 +698,13 @@ q' = 2pq + q^2
              (lambda (i) (- (* i 2) 1))
              k))
 ```
+
+# 1.40
+
+```scheme
+(define (cubic a b c)
+  (lambda (x) (+ (cube x)
+                 (* a (square x))
+                 (* b x)
+                 c)))
+```
