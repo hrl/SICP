@@ -725,3 +725,11 @@ q' = 2pq + q^2
 (define (compose f g)
   (lambda (x) (f (g x))))
 ```
+
+# 1.43
+
+```scheme
+(define (repeated f n)
+  (cond ((< n 1) (lambda (x) x))
+        (else (compose f (repeated f (- n 1))))))
+```
