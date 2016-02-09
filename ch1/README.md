@@ -510,3 +510,14 @@ q' = 2pq + q^2
 (simpson cube 0 1 100) ; 1/4
 (simpson cube 0 1 1000) ; 1/4
 ```
+
+# 1.30
+
+```scheme
+(define (sum term a next b)
+  (define (iter a result)
+    (if (> a b)
+        result
+        (iter (next a) (+ result (term a)))))
+  (iter a 0))
+```
