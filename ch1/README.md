@@ -718,3 +718,10 @@ q' = 2pq + q^2
 (((double (double double)) inc) 5)
 ((double (double (double (double inc)))) 5) ; 21
 ```
+
+# 1.42
+
+```scheme
+(define (compose f g)
+  (lambda (x) (f (g x))))
+```
