@@ -677,3 +677,13 @@ q' = 2pq + q^2
 ```
 
 (>= k 13)
+
+# 1.38
+
+```scheme
+(cont-frac (lambda (i) 1.0)
+           (lambda (i) (cond ((= (remainder (- i 1) 3) 1)
+                              (* 2 (+ 1 (floor (/ i 3)))))
+                             (else 1)))
+           100)
+```
