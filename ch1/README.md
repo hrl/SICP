@@ -639,3 +639,23 @@ q' = 2pq + q^2
 
 (fixed-point (lambda (x) (+ 1 (/ 1 x))) 1.0) ; 1.6180327868852458
 ```
+
+# 1.36
+
+```scheme
+(define tolerance 0.00001)
+
+(define (fixed-point f first-guess)
+  (define (close-enouth? v1 v2)
+    (< (abs (- v1 v2)) tolerance))
+  (define (try guess)
+    (newline)
+    (display guess)
+    (let ((next (f guess)))
+      (if (close-enouth? guess next)
+          next
+          (try next))))
+  (try first-guess))
+
+(fixed-point (lambda (x) (/ (log 1000) (log x))) 2.0) ; 4.555532270803653
+```
