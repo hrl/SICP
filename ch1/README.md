@@ -747,3 +747,14 @@ q' = 2pq + q^2
 (define (smooth-n f n)
   ((repeated smooth n) f))
 ```
+
+# 1.45
+
+```scheme
+(define (damp-time n)
+  (/ (log n) (log 2)))
+
+(define (root-n n x)
+  (fixed-point ((repeated average-damp (damp-time n)) (lambda (y) (/ x (fast-expt y (- n 1)))))
+               1.0))
+```
