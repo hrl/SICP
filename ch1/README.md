@@ -621,3 +621,21 @@ q' = 2pq + q^2
 (f 2)
 (2 2) ; error
 ```
+
+# 1.35
+
+```scheme
+(define tolerance 0.00001)
+
+(define (fixed-point f first-guess)
+  (define (close-enouth? v1 v2)
+    (< (abs (- v1 v2)) tolerance))
+  (define (try guess)
+    (let ((next (f guess)))
+      (if (close-enouth? guess next)
+          next
+          (try next))))
+  (try first-guess))
+
+(fixed-point (lambda (x) (+ 1 (/ 1 x))) 1.0) ; 1.6180327868852458
+```
