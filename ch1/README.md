@@ -687,3 +687,14 @@ q' = 2pq + q^2
                              (else 1)))
            100)
 ```
+
+# 1.39
+
+```scheme
+(define (tan-cf x k)
+  (cont-frac (lambda (i) (if (= i 1)
+                             x
+                             (square x)))
+             (lambda (i) (- (* i 2) 1))
+             k))
+```
