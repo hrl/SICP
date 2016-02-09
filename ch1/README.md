@@ -613,3 +613,11 @@ q' = 2pq + q^2
     (= (gcd x n) 1))
   (filtered-product filter identity 1 inc n))
 ```
+
+# 1.34
+
+```scheme
+(f f)
+(f 2)
+(2 2) ; error
+```
