@@ -1,14 +1,3 @@
-# 2.1
-
-```scheme
-(define (make-rat n d)
-  (let ((g ((if (< d 0) - +)(gcd n d))))
-    (cons (/ n g) (/ d g))))
-```
-
-# 2.2
-
-```scheme
 (define (make-point x y)
   (cons x y))
 
@@ -42,4 +31,3 @@
   (display ",")
   (display (y-point point))
   (display ")"))
-```
