@@ -257,3 +257,12 @@ CaCb >> WaWb
 Pab = 50(Wb/Cb + Wa/Ca)
 Pab = 0.5(Pa + Pb)
 ```
+
+# 2.17
+
+```scheme
+(define (last-pair items)
+  (cond ((null? items) nil)
+        ((null? (cdr items)) items)
+        (else (last-pair (cdr items)))))
+```
