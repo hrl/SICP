@@ -205,3 +205,33 @@
                     (make-interval (/ 1.0 (upper-bound y))
                                    (/ 1.0 (lower-bound y))))))
 ```
+
+# 2.11
+
+```scheme
+(define (mul-interval x y)
+  (define (sign-interval interval)
+    (cond ((and (< (upper-bound interval) 0) (< (lower-bound interval) 0)) -1)
+          ((and (> (upper-bound interval) 0) (> (lower-bound interval) 0)) 1)
+          (else 0)))
+  (define (abs-interval interval)
+    (make-interval (abs (lower-bound interval))
+                   (abs (upper-bound interval))))
+  (let ((sign-x (sign-interval x))
+        (sign-y (sign-interval y))
+        (sign-xy (* (sign-interval x) (sign-interval y)))
+        (abs-x (abs-interval x))
+        (abs-y (abs-interval y)))
+    (cond ((and (not (= sign-x 0)) (not (= sign-y 0)))
+           (make-interval (* sign-xy (lower-bound abs-x) (lower-bound abs-y))
+                          (* sign-xy (upper-bound abs-x) (upper-bound abs-y))))
+          ((and (= sign-x 0) (not (= sign-y 0)))
+           (make-interval (* sign-y (lower-bound x) (upper-bound abs-y))
+                          (* sign-y (upper-bound x) (upper-bound abs-y))))
+          ((and (not (= sign-x 0)) (= sign-y 0))
+           (make-interval (* sign-x (lower-bound y) (upper-bound abs-x))
+                          (* sign-x (upper-bound y) (upper-bound abs-x))))
+          ((and (= sign-x 0) (= sign-y 0))
+           (make-interval (min (* (lower-bound x) (upper-bound y)) (* (upper-bound x) (lower-bound y)))
+                          (max (* (lower-bound x) (lower-bound y)) (* (upper-bound x) (upper-bound y))))))))
+```
