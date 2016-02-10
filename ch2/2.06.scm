@@ -7,5 +7,11 @@
 
 (define two (lambda (f) (lambda (x) (f (f x)))))
 
-(define (+ a b)
+(define (add a b)
   (lambda (f) (lambda (x) ((a f) ((b f) x)))))
+
+(define (int church-number)
+  (define (inc n) (+ n 1))
+  ((church-number inc) 0))
+
+(int (add one two)) ; 3
