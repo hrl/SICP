@@ -245,3 +245,15 @@
 (define (percent i)
   (* (/ (width i) (center i)) 100))
 ```
+
+# 2.13
+
+```text
+a = (Ca - 0.5Wa, Ca + 0.5Wa)
+b = (Cb - 0.5Wb, Cb + 0.5Wb)
+a * b = ((CaCb + 0.25WaWb) - (0.5CaWb + 0.5 CbWa), ...)
+Pab = 50(CaWb + CbWa) / (CaCb + 0.25WaWb)
+CaCb >> WaWb
+Pab = 50(Wb/Cb + Wa/Ca)
+Pab = 0.5(Pa + Pb)
+```
