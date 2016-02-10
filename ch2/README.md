@@ -156,3 +156,11 @@
 (define (lower-bound interval)
   (min (car interval) (cdr interval)))
 ```
+
+# 2.8
+
+```scheme
+(define (sub-interval x y)
+  (add-interval x (make-interval (- (upper-bound y))
+                                 (- (lower-bound y)))))
+```
