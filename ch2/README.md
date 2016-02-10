@@ -146,3 +146,13 @@
 ((lambda (x) (inc (inc (inc x)))) 0)
 (inc (inc (inc 0))) ; 3
 ```
+
+# 2.7
+
+```scheme
+(define (upper-bound interval)
+  (max (car interval) (cdr interval)))
+
+(define (lower-bound interval)
+  (min (car interval) (cdr interval)))
+```
