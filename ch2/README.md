@@ -235,3 +235,13 @@
            (make-interval (min (* (lower-bound x) (upper-bound y)) (* (upper-bound x) (lower-bound y)))
                           (max (* (lower-bound x) (lower-bound y)) (* (upper-bound x) (upper-bound y))))))))
 ```
+
+# 2.12
+
+```scheme
+(define (make-center-percent c p)
+  (make-center-width c (* c (/ p 100))))
+
+(define (percent i)
+  (* (/ (width i) (center i)) 100))
+```
