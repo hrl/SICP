@@ -1,14 +1,3 @@
-# 2.1
-
-```scheme
-(define (make-rat n d)
-  (let ((g ((if (< d 0) - +)(gcd n d))))
-    (cons (/ n g) (/ d g))))
-```
-
-# 2.2
-
-```scheme
 (define (make-point x y)
   (cons x y))
 
@@ -27,26 +16,6 @@
 (define (end-segment segment)
   (cdr segment))
 
-(define (midpoint-segment segment)
-  (make-point (/ (+ (x-point (begin-segment segment))
-                    (x-point (end-segment segment)))
-                 2)
-              (/ (+ (y-point (begin-segment segment))
-                    (y-point (end-segment segment)))
-                 2)))
-
-(define (print-point point)
-  (newline)
-  (display "(")
-  (display (x-point point))
-  (display ",")
-  (display (y-point point))
-  (display ")"))
-```
-
-# 2.3
-
-```scheme
 ; define rect using diagonal
 (define (make-rect diagonal)
   diagonal)
@@ -74,4 +43,3 @@
 
 (define (perimeter-rect rect)
   (* 2 (+ (width-rect rect) (height-rect rect))))
-```
