@@ -266,3 +266,15 @@ Pab = 0.5(Pa + Pb)
         ((null? (cdr items)) items)
         (else (last-pair (cdr items)))))
 ```
+
+# 2.18
+
+```scheme
+(define (reverse items)
+  (define (iter result next)
+    (cond ((null? next) result)
+          (else (iter (cons (car next) result) (cdr next)))))
+  (if (null? items)
+      ()
+      (iter (cons (car items) ()) (cdr items))))
+```
