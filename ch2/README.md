@@ -278,3 +278,16 @@ Pab = 0.5(Pa + Pb)
       ()
       (iter (cons (car items) ()) (cdr items))))
 ```
+
+# 2.19
+
+```scheme
+(define (no-more? coin-values)
+  (null? coin-values))
+
+(define (except-first-denomination coin-values)
+  (cdr coin-values))
+
+(define (first-denomination coin-values)
+  (car coin-values))
+```
