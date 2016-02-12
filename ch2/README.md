@@ -307,3 +307,15 @@ Pab = 0.5(Pa + Pb)
               (cdr next))))
   (reverse (iter (list x) items)))
 ```
+
+# 2.21
+
+```scheme
+(define (square-list items)
+  (if (null? items)
+      ()
+      (cons (square (car items)) (square-list (cdr items)))))
+
+(define (square-list items)
+  (map (lambda (x) (square x)) items))
+```
