@@ -291,3 +291,19 @@ Pab = 0.5(Pa + Pb)
 (define (first-denomination coin-values)
   (car coin-values))
 ```
+
+# 2.20
+
+```scheme
+(define (same-parity x . items)
+  (define filter
+    (lambda (i) (= (remainder x 2) (remainder i 2))))
+  (define (iter result next)
+    (if (null? next)
+        result
+        (iter (if (filter (car next))
+                  (cons (car next) result)
+                  result)
+              (cdr next))))
+  (reverse (iter (list x) items)))
+```
