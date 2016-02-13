@@ -450,3 +450,15 @@ Pab = 0.5(Pa + Pb)
              (f sub-tree)))
        tree))
 ```
+
+# 2.32
+
+```scheme
+(define (subsets s)
+  (if (null? s)
+      (list ())
+      (let ((rest (subsets (cdr s))))
+        (append rest (map (lambda (i) (cons (car s) i)) rest)))))
+```
+
+对非空集合S，i∈S，则对任一S的子集M，必有i∈M或i∉M。
