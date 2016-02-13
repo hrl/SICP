@@ -333,3 +333,9 @@ Pab = 0.5(Pa + Pb)
   (cond ((null? items) #t)
         (else (f (car items)) (for-each f (cdr items)))))
 ```
+
+# 2.24
+
+```scheme
+(list 1 (list 2 (list 3 4))) ; (1 (2 (3 4)))
+```
