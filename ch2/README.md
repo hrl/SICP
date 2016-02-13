@@ -439,3 +439,14 @@ Pab = 0.5(Pa + Pb)
              (square sub-tree)))
        tree))
 ```
+
+# 2.31
+
+```scheme
+(define (tree-map f tree)
+  (map (lambda (sub-tree)
+         (if (pair? sub-tree)
+             (tree-map f sub-tree)
+             (f sub-tree)))
+       tree))
+```
