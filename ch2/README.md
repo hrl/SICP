@@ -339,3 +339,11 @@ Pab = 0.5(Pa + Pb)
 ```scheme
 (list 1 (list 2 (list 3 4))) ; (1 (2 (3 4)))
 ```
+
+# 2.25
+
+```scheme
+(lambda (items) (car (cdr (car (cdr (cdr items))))))
+(lambda (items) (car (car items)))
+(lambda (items) (cdr (cdr (cdr (cdr (cdr (cdr (cdr items))))))))
+```
