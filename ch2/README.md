@@ -355,3 +355,15 @@ Pab = 0.5(Pa + Pb)
 (cons x y) ; ((1 2 3) 4 5 6)
 (list x y) ; ((1 2 3) (4 5 6))
 ```
+
+# 2.27
+
+```scheme
+(define (deep-reverse items)
+  (define (iter result next)
+    (cond ((null? next) result)
+          (else (iter (cons (deep-reverse (car next)) result) (cdr next)))))
+  (if (pair? items)
+      (iter (cons (car items) ()) (cdr items))
+      items))
+```
