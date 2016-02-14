@@ -484,3 +484,10 @@ Pab = 0.5(Pa + Pb)
               0
               coefficient-sequence))
 ```
+
+# 2.35
+
+```scheme
+(define (count-leaves t)
+  (accumulate (lambda (leave rest-count) (+ rest-count 1)) 0 (map (lambda (x) x) (enumerate-tree t))))
+```
