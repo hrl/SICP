@@ -462,3 +462,10 @@ Pab = 0.5(Pa + Pb)
 ```
 
 对非空集合S，i∈S，则对任一S的子集M，必有i∈M或i∉M。
+
+# 2.33
+
+```scheme
+(define (map p sequence)
+  (accumulate (lambda (x y) (cons (p x) y)) () sequence))
+```
