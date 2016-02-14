@@ -501,3 +501,17 @@ Pab = 0.5(Pa + Pb)
       (cons (accumulate op init (map car seqs))
             (accumulate-n op init (map cdr seqs)))))
 ```
+
+# 2.37
+
+```scheme
+(define (matrix-*-vector m v)
+  (map (lambda (i) (dot-product i v)) m))
+
+(define (transpose mat)
+  (accumulate-n cons () mat))
+
+(define (matrix-*-matrix m n)
+  (let ((cols (transpose n)))
+    (map (lambda (i) (matrix-*-vector cols i)) m)))
+```
