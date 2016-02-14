@@ -491,3 +491,13 @@ Pab = 0.5(Pa + Pb)
 (define (count-leaves t)
   (accumulate (lambda (leave rest-count) (+ rest-count 1)) 0 (map (lambda (x) x) (enumerate-tree t))))
 ```
+
+# 2.36
+
+```scheme
+(define (accumulate-n op init seqs)
+  (if (null? (car seqs))
+      ()
+      (cons (accumulate op init (map car seqs))
+            (accumulate-n op init (map cdr seqs)))))
+```
