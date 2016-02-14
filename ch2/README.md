@@ -528,3 +528,13 @@ Pab = 0.5(Pa + Pb)
 `(= (op a b) (op b a))`
 
 `(= (op a (op b c)) (op (op a b) c))`
+
+# 2.39
+
+```scheme
+(define (reverse sequence)
+  (fold-right (lambda (x y) (append y (list x))) () sequence))
+
+(define (reverse sequence)
+  (fold-left (lambda (x y) (cons y x)) () sequence))
+```
