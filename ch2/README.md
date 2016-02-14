@@ -475,3 +475,12 @@ Pab = 0.5(Pa + Pb)
 (define (length sequence)
   (accumulate (lambda (x y) (+ y 1)) 0 sequence))
 ```
+
+# 2.34
+
+```scheme
+(define (horner-eval x coefficient-sequence)
+  (accumulate (lambda (this-coeff higher-terms) (+ this-coeff (* higher-terms x)))
+              0
+              coefficient-sequence))
+```
