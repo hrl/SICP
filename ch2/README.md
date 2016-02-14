@@ -515,3 +515,16 @@ Pab = 0.5(Pa + Pb)
   (let ((cols (transpose n)))
     (map (lambda (i) (matrix-*-vector cols i)) m)))
 ```
+
+# 2.38
+
+```scheme
+(fold-right / 1 (list 1 2 3)) ; 2/3
+(fold-left / 1 (list 1 2 3)) ; 1/6
+(fold-right list () (list 1 2 3)) ; (1 (2 (3 ())))
+(fold-left list () (list 1 2 3)) ; (((() 1) 2) 3)
+```
+
+`(= (op a b) (op b a))`
+
+`(= (op a (op b c)) (op (op a b) c))`
