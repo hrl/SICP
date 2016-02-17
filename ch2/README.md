@@ -551,3 +551,17 @@ Pab = 0.5(Pa + Pb)
   (map make-prime-sum
        (filter prime-sum? (unique-pairs n))))
 ```
+
+# 2.41
+
+```scheme
+(define (unique-triples n)
+  (flatmap (lambda (i) (flatmap (lambda (j) (map (lambda (k) (list i j k))
+                                                 (enumerate-interval 1 (- j 1))))
+                                (enumerate-interval 1 (- i 1))))
+           (enumerate-interval 1 n)))
+
+(define (triples-sum n s)
+  (filter (lambda (triples) (= (+ (car triples) (cadr triples) (caddr triples)) s))
+          (unique-triples n)))
+```
