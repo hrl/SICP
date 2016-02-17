@@ -565,3 +565,25 @@ Pab = 0.5(Pa + Pb)
   (filter (lambda (triples) (= (+ (car triples) (cadr triples) (caddr triples)) s))
           (unique-triples n)))
 ```
+
+# 2.42
+
+```scheme
+(define empty-board ())
+
+(define (adjoin-position new-row k rest-of-queens)
+  (cons new-row rest-of-queens))
+
+(define (safe? k positions)
+  (define current-pos (car positions))
+  (define (iter shift rest)
+    (cond ((null? rest)
+           #t)
+          ((or (= (car rest) current-pos)
+               (= (- (car rest) shift) current-pos)
+               (= (+ (car rest) shift) current-pos))
+           #f)
+          (else
+           (iter (+ 1 shift) (cdr rest)))))
+  (iter 1 (cdr positions)))
+```
