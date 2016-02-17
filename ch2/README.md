@@ -537,4 +537,17 @@ Pab = 0.5(Pa + Pb)
 
 (define (reverse sequence)
   (fold-left (lambda (x y) (cons y x)) () sequence))
+``` 
+
+# 2.40
+
+```scheme
+(define (unique-pairs n)
+  (flatmap (lambda (i) (map (lambda (j) (list i j))
+                            (enumerate-interval 1 (- i 1))))
+           (enumerate-interval 1 n)))
+
+(define (prime-sum-pairs n)
+  (map make-prime-sum
+       (filter prime-sum? (unique-pairs n))))
 ```
