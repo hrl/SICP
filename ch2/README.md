@@ -587,3 +587,7 @@ Pab = 0.5(Pa + Pb)
            (iter (+ 1 shift) (cdr rest)))))
   (iter 1 (cdr positions)))
 ```
+
+# 2.43
+
+`queen-cols`被移入内层后，从原来每层只计算1次变为了计算`board-size`次。当`board-size`为8时，耗时约为T^8
