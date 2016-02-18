@@ -41,7 +41,7 @@
             (else #f)))
     (define (parse-continue exp)
       (list (parse-exp (car exp)) (cadr exp) (parse-exp (cddr exp))))
-    (define (quote-to-first-3-items exp)
+    (define (add-quote-to-first-3-items exp)
       (cons (list (car exp) (cadr exp) (caddr exp)) (cdddr exp)))
     (cond ((not (pair? exp))
            exp)
@@ -52,7 +52,7 @@
           ((op< (cadr exp) (cadddr exp))
            (parse-continue exp))
           (else
-           (parse-exp (quote-to-first-3-items exp)))))
+           (parse-exp (add-quote-to-first-3-items exp)))))
   (define exp (parse-exp raw-exp))
   (cond ((number? exp) 0)
         ((variable? exp)
