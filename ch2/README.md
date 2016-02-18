@@ -603,3 +603,13 @@ Pab = 0.5(Pa + Pb)
 (memq 'red '((red shoes) (blue socks))) ; #f
 (memq 'red '(red shoes blue socks)) ; (red shoes blue socks)
 ```
+
+# 2.54
+
+```scheme
+(define (equal? a b)
+  (cond ((and (null? a) (null? b)) #t)
+        ((or (null? a) (null? b)) #f)
+        ((eq? (car a) (car b)) (equal? (cdr a) (cdr b)))
+        (else #f)))
+```
