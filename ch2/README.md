@@ -620,3 +620,43 @@ Pab = 0.5(Pa + Pb)
 (car ''abracadabra)
 (car (quote (quote abracadabra))) ; quote
 ```
+
+# 2.56
+
+```scheme
+(define (make-exponentiation base exp)
+  (cond ((or (=number? base 1) (=number? exp 0)) 1)
+        ((=number? base 0) 0)
+        ((and (number? base) (number? exp)) (expt base exp))
+        (else (list 'expt base exp))))
+
+(define (exponentiation? x)
+  (and (pair? x) (eq? (car x) 'expt)))
+
+(define (base e) (cadr e))
+
+(define (exponent e) (caddr e))
+
+(define (deriv exp var)
+  (cond ((number? exp) 0)
+        ((variable? exp)
+         (if (same-variable? exp var) 1 0))
+        ((sum? exp)
+         (make-sum (deriv (addend exp) var)
+                   (deriv (augend exp) var)))
+        ((product? exp)
+         (make-sum
+          (make-product (multiplier exp)
+                        (deriv (multiplicand exp) var))
+          (make-product (deriv (multiplier exp) var)
+                        (multiplicand exp))))
+        ((exponentiation? exp)
+         (make-product
+          (exponent exp)
+          (make-product
+           (make-exponentiation (base exp)
+                                (make-sum (exponent exp) -1))
+           (deriv (base exp) var))))
+        (else
+         (error "unknown expression type -- DERIV" exp))))
+```
