@@ -591,3 +591,15 @@ Pab = 0.5(Pa + Pb)
 # 2.43
 
 `queen-cols`被移入内层后，从原来每层只计算1次变为了计算`board-size`次。当`board-size`为8时，耗时约为T^8
+
+# 2.53
+
+```scheme
+(list 'a 'b 'c) ; (a b c)
+(list (list 'george)) ; ((george))
+((cdr '((x1 x2) (y1 y2)))) ; error
+((cadr '((x1 x2) (y1 y2)))) ; error
+(pair? (car '(a short list))) ; #f
+(memq 'red '((red shoes) (blue socks))) ; #f
+(memq 'red '(red shoes blue socks)) ; (red shoes blue socks)
+```
