@@ -670,3 +670,58 @@ Pab = 0.5(Pa + Pb)
 (define (multiplicand p)
   (accumulate make-product 1 (cddr p)))
 ```
+
+# 2.58
+
+```scheme
+; a)
+; 改变一下位置即可 
+(define (make-sum a1 a2)
+  (cond ((=number? a1 0) a2)
+        ((=number? a2 0) a1)
+        ((and (number? a1) (number? a2) (+ a1 a2)))
+        ((equal? a1 a2) (list 2 '* a1))
+        (else (list a1 '+ a2))))
+
+(define (make-product m1 m2)
+  (cond ((or (=number? m1 0) (=number? m2 0)) 0)
+        ((=number? m1 1) m2)
+        ((=number? m2 1) m1)
+        ((and (number? m1) (number? m2)) (* m1 m2))
+        (else (list m1 '* m2))))
+
+(define (sum? x)
+  (and (pair? x) (eq? (cadr x) '+)))
+
+(define (addend s) (car s))
+
+(define (augend s) (caddr s))
+
+(define (product? x)
+  (and (pair? x) (eq? (cadr x) '*)))
+
+(define (multiplier p) (car p))
+
+(define (multiplicand p) (caddr p))
+
+; b)
+; 基于a，deriv前先对exp解析一次以补全括号
+(define (parse-exp exp)
+  (define (op< op1 op2)
+    (cond ((and (eq? op1 '+) (eq? op2 '*)) #t)
+          (else #f)))
+  (define (parse-continue exp)
+    (list (parse-exp (car exp)) (cadr exp) (parse-exp (cddr exp))))
+  (define (quote-to-first-3-items exp)
+    (cons (list (car exp) (cadr exp) (caddr exp)) (cdddr exp)))
+  (cond ((not (pair? exp))
+         exp)
+        ((= (length exp) 1)
+         (parse-exp (car exp)))
+        ((= (length exp) 3)
+         (parse-continue exp))
+        ((op< (cadr exp) (cadddr exp))
+         (parse-continue exp))
+        (else
+         (parse-exp (quote-to-first-3-items exp)))))
+```
