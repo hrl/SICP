@@ -613,3 +613,10 @@ Pab = 0.5(Pa + Pb)
         ((eq? (car a) (car b)) (equal? (cdr a) (cdr b)))
         (else #f)))
 ```
+
+# 2.55
+
+```scheme
+(car ''abracadabra)
+(car (quote (quote abracadabra))) ; quote
+```
