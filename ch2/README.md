@@ -732,3 +732,15 @@ Pab = 0.5(Pa + Pb)
 (define (union-set set1 set2)
   (accumulate adjoin-set set1 set2))
 ```
+
+# 2.60
+
+```scheme
+(define (adjoin-set x set)
+  (cons x set))
+
+(define (union-set set1 set2)
+  (append set1 set2))
+```
+
+`adjoin-set`变为O(1), `union-set`变为O(n), 插入/求并次数多于删除/求交次数或是元素重复较少时较为适用
