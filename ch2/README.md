@@ -725,3 +725,10 @@ Pab = 0.5(Pa + Pb)
         (else
          (parse-exp (add-quote-to-first-3-items exp)))))
 ```
+
+# 2.59
+
+```scheme
+(define (union-set set1 set2)
+  (accumulate adjoin-set set1 set2))
+```
