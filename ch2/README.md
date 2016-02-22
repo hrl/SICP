@@ -744,3 +744,13 @@ Pab = 0.5(Pa + Pb)
 ```
 
 `adjoin-set`变为O(1), `union-set`变为O(n), 插入/求并次数多于删除/求交次数或是元素重复较少时较为适用
+
+# 2.61
+
+```scheme
+(define (adjoin-set set x)
+  (cond ((null? set) (list x))
+        ((= x (car set)) set)
+        ((< x (car set)) (cons x set))
+        (else (cons (car set) (adjoin-set (cdr set) x)))))
+```
