@@ -770,3 +770,9 @@ Pab = 0.5(Pa + Pb)
                  ((> x1 x2)
                   (cons x2 (union-set set1 (cdr set2)))))))))
 ```
+
+# 2.63
+
+a) 同样的结果
+
+b) `tree->list-2`增长更慢
