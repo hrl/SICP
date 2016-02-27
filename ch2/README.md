@@ -816,3 +816,9 @@ O(n)
               (else
                (lookup given-key (right-branch tree-of-records)))))))
 ```
+
+# 2.67
+
+```scheme
+(decode sample-message sample-tree) ; (a d a b b c a)
+```
