@@ -822,3 +822,30 @@ O(n)
 ```scheme
 (decode sample-message sample-tree) ; (a d a b b c a)
 ```
+
+# 2.68
+
+```scheme
+(define (symbol-in-branch? message-symbol branch)
+  (define (elem-in-set? elem set)
+    (cond ((null? set) #f)
+          ((eq? elem (car set)) #t)
+          (else (elem-in-set? elem (cdr set)))))
+  (if (leaf? branch)
+      (eq? message-symbol (symbol-leaf branch))
+      (elem-in-set? message-symbol (symbols branch))))
+
+(define (encode-symbol message-symbol tree)
+  (let ((l-branch (left-branch tree))
+        (r-branch (right-branch tree)))
+    (cond ((symbol-in-branch? message-symbol l-branch)
+           (if (leaf? l-branch)
+               (list 0)
+               (cons 0 (encode-symbol message-symbol l-branch))))
+          ((symbol-in-branch? message-symbol r-branch)
+           (if (leaf? r-branch)
+               (list 1)
+               (cons 1 (encode-symbol message-symbol r-branch))))
+          (else
+           (error "bad symbol -- ENCODE-SYMBOL" message-symbol)))))
+```
