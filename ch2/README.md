@@ -849,3 +849,16 @@ O(n)
           (else
            (error "bad symbol -- ENCODE-SYMBOL" message-symbol)))))
 ```
+
+# 2.69
+
+```scheme
+(define (successive-merge leaf-pairs)
+  (cond ((= (length leaf-pairs) 2)
+         (make-code-tree (car leaf-pairs)
+                         (cadr leaf-pairs)))
+        (else (successive-merge
+               (adjoin-set (make-code-tree (car leaf-pairs)
+                                           (cadr leaf-pairs))
+                           (cddr leaf-pairs))))))
+```
