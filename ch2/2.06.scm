@@ -17,8 +17,8 @@
 
 (define (inc n) (+ n 1))
 
-(define (int church-number)
-  ((church-number inc) 0))
+(define (int church-numeral)
+  ((church-numeral inc) 0))
 
 (int (add one two)) ; 3
 ; expand
