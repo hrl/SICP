@@ -894,7 +894,7 @@ O(n)
 # 2.73
 
 a) 判断是否为基本数据(非操作符)，然后对基本数据直接做处理，对操作符取出相应的处理函数后做处理；  
-   `number?`与`same-variable`的对象为基本数据，而非操作符。
+&nbsp;&nbsp;&nbsp;`number?`与`same-variable`的对象为基本数据，而非操作符。
 
 ```scheme
 ; b) 
