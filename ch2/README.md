@@ -940,3 +940,25 @@ a) 判断是否为基本数据(非操作符)，然后对基本数据直接做处
         ((and (number? m1) (number? m2)) (* m1 m2))
         (else ((get 'tag '*) (list m1 m2)))))
 ```
+
+# 2.74
+
+```scheme
+; a)
+(define (get-record org employee-name)
+  ((get org 'get-record) employee-name))
+
+; b)
+(define (get-salary org employee-record)
+  ((get org 'get-salary) employee-record))
+
+; c)
+(define (find-employee-record orgs employee-name)
+  (if (null? orgs)
+      '()
+      (let ((record (get-record (car orgs) employee-name))
+            (rest (find-employee-record (cdr orgs) employee-name)))
+        (if (null? record)
+            rest
+            (cons record rest)))))
+```
