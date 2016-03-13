@@ -7,7 +7,7 @@
     (make-sum (deriv (addend operand) var)
               (deriv (augend operand) var)))
   (define (tag x) (attach-tag '+ x))
-  (put 'deriv '+ deriv-sum)
+  (put 'deriv '(+) deriv-sum)
   (put 'tag '+ tag)
   'done)
 
@@ -29,7 +29,7 @@
      (make-product (deriv (multiplier operand) var)
                    (multiplicand operand))))
   (define (tag x) (attach-tag '* x))
-  (put 'deriv '* deriv-product)
+  (put 'deriv '(*) deriv-product)
   (put 'tag '* tag)
   'done)
 
