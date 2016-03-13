@@ -1008,3 +1008,36 @@ d) 无需特殊修改，跟其他人事文件一样安装即可
         ((pair? datum) (cdr datum))
         (else (error "Bad tagged datum -- CONTENTS" datum))))
 ```
+
+# 2.79
+
+```scheme
+(define (equ? x y) (apply-generic 'equ? x y))
+
+(define (install-scheme-number-package)
+  ; ...
+  (define (equ? x y)
+    (= x y))
+  ; ...
+  (put 'equ? '(scheme-number scheme-number) equ?)
+  ; ...
+  )
+
+(define (install-rational-package)
+  ; ...
+  (define (equ? x y)
+    (and (= (numer x) (numer y)) (= (denom x) (denom y))))
+  ; ...
+  (put 'equ? '(rational rational) equ?)
+  ; ...
+  )
+
+(define (install-complex-package)
+  ; ...
+  (define (equ? x y)
+    (and (= (real-part x) (real-part y)) (= (imag-part x) (imag-part y))))
+  ; ...
+  (put 'equ? '(complex complex) equ?)
+  ; ...
+  )
+```
