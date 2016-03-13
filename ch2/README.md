@@ -1041,3 +1041,36 @@ d) 无需特殊修改，跟其他人事文件一样安装即可
   ; ...
   )
 ```
+
+# 2.80
+
+```scheme
+(define (=zero? x) (apply-generic '=zero? x))
+
+(define (install-scheme-number-package)
+  ; ...
+  (define (=zero? x)
+    (= x 0))
+  ; ...
+  (put '=zero? '(scheme-number) =zero?)
+  ; ...
+  )
+
+(define (install-rational-package)
+  ; ...
+  (define (=zero? x)
+    (= (numer x) 0))
+  ; ...
+  (put '=zero? '(rational) =zero?)
+  ; ...
+  )
+
+(define (install-complex-package)
+  ; ...
+  (define (=zero? x)
+    (= (magnitude x) 0))
+  ; ...
+  (put '=zero? '(complex) =zero?)
+  ; ...
+  )
+```
