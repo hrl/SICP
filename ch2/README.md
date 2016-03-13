@@ -990,3 +990,21 @@ d) 无需特殊修改，跟其他人事文件一样安装即可
 未加入新代码前，`magnitude`过程不存在于`complex`包中，仅存在于其下的两个包中，故会引起错误。
 
 加入后，`(magnitude z)`先进入`complex`包，再进去其下的某个具体实现的包，故`apply-generic`共调用了两次。
+
+# 2.78
+
+```scheme
+(define (attach-tag type-tag contents)
+  (cond ((number? contents) contents)
+        (else (cons type-tag contents))))
+
+(define (type-tag datum)
+  (cond ((number? datum) 'scheme-number) ; ?
+        ((pair? datum) (car datum))
+        (else (error "Bad tagged datum -- TYPE-TAG" datum))))
+
+(define (contents datum)
+  (cond ((number? datum) datum)
+        ((pair? datum) (cdr datum))
+        (else (error "Bad tagged datum -- CONTENTS" datum))))
+```
