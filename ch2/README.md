@@ -1106,3 +1106,23 @@ b) 没有纠正，无法正常工作。
               (error "No method for these types"
                      (list op type-tags)))))))
 ```
+
+# 2.82
+
+```scheme
+(define (args-coercion args)
+  (define (get-coercions types type-to)
+    (map (lambda (type)
+           (if (eq? type type-to)
+               (lambda (x) x)
+               (get-coercion type type-to)))
+         types))
+  (define (iter rest)
+    (if (null? rest)
+        #f
+        (let ((coercions (get-coercions args (car rest))))
+          (if (apply and coercions)
+              (map (lambda (f x) (f x)) coercions args)
+              (iter (cdr rest))))))
+  (iter args))
+```
