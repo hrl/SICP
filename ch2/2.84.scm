@@ -1,0 +1,26 @@
+(define (raise-to-same-level a1 a2)
+  (let ((level1 (get 'level (type-tag a1)))
+        (level2 (get 'level (type-tag a2))))
+    (cond ((or (null? level1) (null? level2))
+           (error "No method for these types"
+                  (list a1 a2)))
+          ((= level1 level2)
+           (list a1 a2))
+          ((< level1 level2)
+           (raise-to-same-level (raise a1) a2))
+          ((> level1 level2)
+           (raise-to-same-level a1 (raise a2))))))
+
+(define (apply-generic op . args)
+  (let ((type-tags (map type-tag args)))
+    (let ((proc (get op type-tags)))
+      (if proc
+          (apply proc (map contents args))
+          (if (and (= (length args) 2)
+                   (not (eq? (car type-tags) (cadr type-tags))))
+              (let ((a1-a2 (raise-to-same-level a1 a2)))
+                (let ((a1 (car a1-a2))
+                      (a2 (cade a1-a2)))
+                  (apply-generic op (t1->t2 a1) a2))
+              (error "No method for these types"
+                     (list op type-tags)))))))
