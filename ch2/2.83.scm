@@ -1,13 +1,13 @@
-(define (raise type)
-  (let ((type-level (get 'level (type-tag type))))
+(define (raise datum)
+  (let ((type-level (get 'level (type-tag datum))))
     (if (= (get 'level 'max) type-level)
-        type
+        datum
         (let ((upper-coercion (get-coercion
-                               type
+                               datum
                                (get 'level-reverse (+ type-level 1)))))
           (if upper-coercion
-              (upper-coercion type)
-              (error "Unable to raise -- RAISE" type))))))
+              (upper-coercion datum)
+              (error "Unable to raise -- RAISE" datum))))))
 
 (define (install-level-package)
   (put 'level 'scheme-number 0)
