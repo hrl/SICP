@@ -4,7 +4,7 @@
       (if proc
           (apply proc (map contents args))
           (if (and (= (length args) 2)
-                   (eq? (car type-tags) (cadr type-tags)))
+                   (not (eq? (car type-tags) (cadr type-tags))))
               (let ((type1 (car type-tags))
                     (type2 (cadr type-tags))
                     (a1 (car args))
