@@ -12,9 +12,9 @@
                 (let ((t1->t2 (get-coercion type1 type2))
                       (t2->t1 (get-coercion type2 type1)))
                   (cond ((t1->t2)
-                         (apply-generic op (t1->t2 t1) t2))
+                         (apply-generic op (t1->t2 a1) a2))
                         ((t2->t1)
-                         (apply-generic op t1 (t2->t1 t2)))
+                         (apply-generic op a1 (t2->t1 a2)))
                         (else
                          (error "No method for these types"
                                 (list op type-tags))))))
