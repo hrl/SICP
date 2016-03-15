@@ -1257,3 +1257,23 @@ b) 没有纠正，无法正常工作。
 # 2.86
 
 将scheme内部算术操作替换成通用操作，如`=`变为`equ?`，`+`变为`add`。
+
+# 2.87
+
+```scheme
+(define (=zero? x) (apply-generic '=zero? x))
+
+(define (install-polynomial-package)
+  ; ...
+  (define (=zero? x)
+    (define (rec terms)
+      (if (empty-termlist? terms)
+          #t
+          (and (=zero? (coeff (first-term terms)))
+               (rec (rest-terms)))))
+    (rec (term-list x)))
+  ; ...
+  (put '=zero? 'polynomial =zero?)
+  ; ...
+  )
+```
