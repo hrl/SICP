@@ -10,6 +10,6 @@
                (rec (rest-terms)))))
     (rec (term-list x)))
   ; ...
-  (put '=zero? 'polynomial =zero?)
+  (put '=zero? '(polynomial) =zero?)
   ; ...
   )

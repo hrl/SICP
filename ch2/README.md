@@ -1273,7 +1273,7 @@ b) 没有纠正，无法正常工作。
                (rec (rest-terms)))))
     (rec (term-list x)))
   ; ...
-  (put '=zero? 'polynomial =zero?)
+  (put '=zero? '(polynomial) =zero?)
   ; ...
   )
 ```
