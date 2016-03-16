@@ -1293,7 +1293,7 @@ b) 没有纠正，无法正常工作。
                                 (neg (coeff term)))
                      (neg-terms (rest-terms terms)))))
     (make-poly (variable x)
-               (neg-terms (term-list x)))
+               (neg-terms (term-list x))))
   (define (sub-poly x y)
     (add-poly x (neg-poly y)))
   ; ...

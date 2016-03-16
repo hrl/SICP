@@ -10,7 +10,7 @@
                                 (neg (coeff term)))
                      (neg-terms (rest-terms terms)))))
     (make-poly (variable x)
-               (neg-terms (term-list x)))
+               (neg-terms (term-list x))))
   (define (sub-poly x y)
     (add-poly x (neg-poly y)))
   ; ...
