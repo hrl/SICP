@@ -1335,6 +1335,13 @@ b) 没有纠正，无法正常工作。
 # 2.93
 
 ```scheme
+(define (make-rat n d)
+  (cons n d))
+```
+
+# 2.94
+
+```scheme
 (define (gcd a b) (apply-generic 'gcd a b))
 
 (define (install-polynomial-package)
