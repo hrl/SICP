@@ -1,26 +1,3 @@
-# 3.1
-```scheme
-(define (make-accumulator value)
-  (define (accumulator acc-value)
-    (set! value (+ value acc-value))
-    value)
-  accumulator)
-```
-
-# 3.2
-```scheme
-(define (mark-monitored func)
-  (define call-time 0)
-  (define (monitored . args)
-    (if (eq? (car args) 'how-many-calls?)
-        call-time
-        (begin (set! call-time (+ call-time 1))
-               (apply func args))))
-  monitored)
-```
-
-# 3.3
-```scheme
 (define (make-account balance password)
   (define (withdraw amount)
     (if (>= balance amount)
@@ -37,4 +14,3 @@
                            m)))
         (lambda (x) "Incorrect password")))
   dispatch)
-```
