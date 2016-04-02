@@ -38,3 +38,28 @@
         (lambda (x) "Incorrect password")))
   dispatch)
 ```
+
+# 3.4
+```scheme
+(define (call-the-cops) (error "BiBiBi"))
+(define (make-account balance password)
+  (define retry-time 0)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance (- balance amount))
+               balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount)))
+  (define (dispatch password-input m)
+    (if (eq? password password-input)
+        (begin (set! retry-time 0)
+               (cond ((eq? m 'withdraw) withdraw)
+                     ((eq? m 'deposit) deposit)
+                     (else (error "Unknown request -- MAKE-ACCOUNT"
+                                  m))))
+        (cond ((>= retry-time 7) (call-the-cops))
+              (else (begin (set! retry-time (+ retry-time 1))
+                           (lambda (x) "Incorrect password"))))))
+  dispatch)
+```
