@@ -74,3 +74,21 @@
   (let ((size (* (- x2 x1) (- y2 y1))))
     (* size (monte-carlo trials experiment))))
 ```
+
+# 3.6
+```scheme
+(define rand
+  (let ((x random-init))
+    (define (dispatch m)
+      (cond ((eq? m 'generate)
+             (begin (set! x (rand-update x))
+                    x))
+            ((eq? m 'set-init)
+             (lambda (new-x)
+               (set! x new-x)
+               x))
+            (else
+             (error "Unknown action -- RAND"
+                    m))))
+    dispatch))
+```
