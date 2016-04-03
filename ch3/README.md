@@ -63,3 +63,14 @@
                            (lambda (x) "Incorrect password"))))))
   dispatch)
 ```
+
+# 3.5
+```scheme
+(define (estimate-integral P x1 x2 y1 y2 trials)
+  (define (experiment)
+    (let ((x (random-in-range x1 x2))
+          (y (random-in-range y1 y2)))
+      (P x y)))
+  (let ((size (* (- x2 x1) (- y2 y1))))
+    (* size (monte-carlo trials experiment))))
+```
