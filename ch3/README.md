@@ -144,3 +144,7 @@
 acc的局部状态保存在新的局部环境中，包含`balance`，`withdraw`，`deposit`，`dispatch`。
 
 新账户的局部环境是全新的，共享`make-account`。
+
+# 3.12
+
+(b)，(b c d)
