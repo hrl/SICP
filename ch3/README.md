@@ -194,3 +194,22 @@ z2 -> [ . .-]--> [ . .-]--> [ . / ]
 (define return-inf '(a b c))
 (set-cdr! (cddr return-inf) return-inf)
 ```
+
+# 3.17
+
+```scheme
+(define (count-pairs x)
+  (define visited-set '())
+  (define (rec x)
+    (cond ((not (pair? x))
+           0)
+          ((element-of-set? x visited-set)
+           0)
+          (else
+           (set! visited-set
+                 (adjoin-set x visited-set))
+           (+ (rec (car x))
+              (rec (cdr x))
+              1))))
+  (rec x))
+```
