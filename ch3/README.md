@@ -184,15 +184,12 @@ z2 -> [ . .-]--> [ . .-]--> [ . / ]
 ```scheme
 (define return-3 '(a b c))
 
-(define return-4 '((a b) c))
-(set-cdr! (cdr return-4) (cdar return-4))
-; ((a b) c a b)
+(define return-4 '(a (a)))
+(set-car! return-4 (cadr return-4))
 
-(define return-7 '(((a) (b)) (c)))
-(set-cdr! (cdr return-7) (car return-7))
-(set-cdr! (cadr return-7) (car return-7))
-; (((a) (b)) (c (a) (b)) (a) (b))
-
+(define return-7 '(a b c))
+(set-car! return-7 (cdr return-7))
+(set-car! (cdr return-7) (cddr return-7))
 
 (define return-inf '(a b c))
 (set-cdr! (cddr return-inf) return-inf)
