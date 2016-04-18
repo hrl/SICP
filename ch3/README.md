@@ -213,3 +213,20 @@ z2 -> [ . .-]--> [ . .-]--> [ . / ]
               1))))
   (rec x))
 ```
+
+# 3.18
+```scheme
+(define (has-loop? x)
+  (define visited-set '())
+  (define (rec x)
+    (cond ((not (pair? x))
+           #f)
+          ((element-of-set? x visited-set)
+           #t)
+          (else
+           (set! visited-set
+                 (adjoin-set x visited-set))
+           (or (rec (car x))
+               (rec (cdr x))))))
+  (rec x))
+```
