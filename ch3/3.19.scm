@@ -1,0 +1,15 @@
+(define (has-loop? x)
+  (define (chase slow fast)
+    (cond ((null? slow)
+           #f)
+          ((null? fast)
+           #f)
+          ((null? (cdr fast))
+           #f)
+          ((eq? (car slow) (car fast))
+           #t)
+          (else
+           (chase (cdr slow) (cddr fast)))))
+  (if (null? x)
+      #f
+      (chase x (cdr x))))
