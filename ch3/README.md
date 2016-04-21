@@ -250,3 +250,10 @@ z2 -> [ . .-]--> [ . .-]--> [ . / ]
       #f
       (chase x (cdr x))))
 ```
+
+# 3.21
+
+```scheme
+(define (print-queue q)
+  (display (front-ptr q)))
+```
