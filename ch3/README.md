@@ -541,3 +541,7 @@ z2 -> [ . .-]--> [ . .-]--> [ . / ]
             (else (error "Unknown opereation -- TABLE" m))))
     dispatch))
 ```
+
+# 3.27
+
+小于当前计算值的函数值可以直接查表得到，不需重复计算；不能。
