@@ -579,4 +579,5 @@ z2 -> [ . .-]--> [ . .-]--> [ . / ]
     (inverter wire-and-out output)
     'ok))
 ```
+
 总延时为`(+ inverter-delay and-gate-delay inverter-delay)`
