@@ -565,3 +565,18 @@ z2 -> [ . .-]--> [ . .-]--> [ . / ]
   (add-action! a2 or-action-procedure)
   'ok)
 ```
+
+# 3.29
+
+```scheme
+(define (or-gate a1 a2 output)
+  (let ((wire-inv-a1 (make-wire))
+        (wire-inv-a2 (make-wire))
+        (wire-and-out (make-wire)))
+    (inverter a1 wire-inv-a1)
+    (inverter a2 wire-inv-a2)
+    (and-gate wire-inv-a1 wire-inv-a2 wire-and-out)
+    (inverter wire-and-out output)
+    'ok))
+```
+总延时为`(+ inverter-delay and-gate-delay inverter-delay)`
