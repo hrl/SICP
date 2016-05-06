@@ -581,3 +581,28 @@ z2 -> [ . .-]--> [ . .-]--> [ . / ]
 ```
 
 总延时为`(+ inverter-delay and-gate-delay inverter-delay)`
+
+# 3.30
+
+```scheme
+(define (ripple-carry-adder An Bn Cin)
+  (let ((Sn '(*Sn*))
+        (Cout '()))
+    (define (iter A B C S)
+      (if (or (null? A) (null? B))
+          '()
+          (let ((Ci (make-wire))
+                (Si (make-wire)))
+            (full-adder (car A) (car B) C Si Ci)
+            (set-cdr! S (cons Si '()))
+            (set! Cout Ci)
+            (iter (cdr A) (cdr B) Ci (cdr S)))))
+    (iter An Bn Cin Sn)
+    (cons (cdr Sn) Cout)))
+```
+
+```scheme
+(* n full-adder-delay)
+(* n (+ or-gate-delay (* 2 half-adder-delay)))
+(* n (+ or-gate-delay (* 2 (+ and-gate-delay (max or-gate-delay (+ and-gate-delay inverter-delay))))))
+```
