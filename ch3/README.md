@@ -606,3 +606,7 @@ z2 -> [ . .-]--> [ . .-]--> [ . / ]
 (* n (+ or-gate-delay (* 2 half-adder-delay)))
 (* n (+ or-gate-delay (* 2 (+ and-gate-delay (max or-gate-delay (+ and-gate-delay inverter-delay))))))
 ```
+
+# 3.31
+
+新加入的设备不会触发更新，导致后续电路全部无法工作。
