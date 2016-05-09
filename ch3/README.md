@@ -617,3 +617,14 @@ input: (0,1) -> (1,1) -> (1,0) :
 action: ((set-output 1) (set-output 0))  
 如果采用LIFO的常规表会导致与门输出结果为1，但正确结果为0，采用FIFO的队列才能保证执行顺序。
 
+# 3.33
+
+```scheme
+(define (averager a b c)
+  (let ((con-sum (make-connector))
+        (con-const-2 (make-connector)))
+    (constant 2 con-const-2)
+    (adder a b con-sum)
+    (multiplier con-const-2 c con-sum)
+    'ok))
+```
