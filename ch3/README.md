@@ -628,3 +628,7 @@ action: ((set-output 1) (set-output 0))
     (multiplier con-const-2 c con-sum)
     'ok))
 ```
+
+# 3.34
+
+由a可以推出b，但反过来不行。对单纯的乘法器来说，知道积无法推出乘数与被乘数（乘法器不知道他们是相等的）。
