@@ -663,3 +663,22 @@ action: ((set-output 1) (set-output 0))
   (connect b me)
   me)
 ```
+
+# 3.37
+
+```scheme
+(define (c+ a b)
+  (let ((c (make-connector)))
+    (adder a b c)
+    c))
+
+(define (c* a b)
+  (let ((c (make-connector)))
+    (multiplier a b c)
+    c))
+
+(define (cv a)
+  (let ((b (make-connector)))
+    (constant a b)
+    b))
+```
