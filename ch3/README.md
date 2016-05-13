@@ -682,3 +682,26 @@ action: ((set-output 1) (set-output 0))
     (constant a b)
     b))
 ```
+
+# 3.38
+
+```text
+a)
+Peter->Paul->Mary: 45
+Peter->Mary->Paul: 35
+Paul->Peter->Mary: 45
+Paul->Mary->Peter: 50
+Mary->Paul->Peter: 40
+Mary->Peter->Paul: 40
+
+b)
+Peter: 110
+Paul: 80
+Mary: 50
+Peter->Paul: 90
+Peter->Mary: 55
+Paul->Peter: 90
+Paul->Mary: 40
+Mary->Peter: 60
+Mary->Paul: 30
+```
