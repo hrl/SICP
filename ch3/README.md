@@ -705,3 +705,15 @@ Paul->Mary: 40
 Mary->Peter: 60
 Mary->Paul: 30
 ```
+
+# 3.39
+
+```text
+Pa: (define tmp (* x x)
+Pb: (set! x tmp)
+Pc: (set! x (+ x 1))
+
+Pa->Pb->Pc: 101
+Pa->Pc->Pb: 100
+Pc->Pa->Pb: 121
+```
