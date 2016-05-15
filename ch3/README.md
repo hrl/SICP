@@ -717,3 +717,32 @@ Pa->Pb->Pc: 101
 Pa->Pc->Pb: 100
 Pc->Pa->Pb: 121
 ```
+
+# 3.40
+
+```text
+a)
+Pa1: (define xa1 x)
+Pa2: (define xa2 x)
+Pa3: (define xa3 (* xa1 xa2))
+Pa4: (set! x xa3)
+
+Pb1: (define xb1 x)
+Pb2: (define xb2 x)
+Pb3: (define xb3 x)
+Pa4: (define xb4 (* xb1 xb2 xb3))
+Pa5: (set! x xb4)
+
+Pa1..4->Pb1..5: 1000000
+Pb1..4->Pa1..5: 1000000
+Pa1->Pb1..5->Pa2..4: 10000
+Pa1..2->Pb1..5->Pa3..4: 100
+Pb1->Pa1..4->Pb2..5: 100000
+Pb1..2->Pa1..4->Pb3..5: 10000
+Pb1..3->Pa1..4->Pb4..5: 1000
+
+(list 100 1000 10000 100000 1000000)
+
+b)
+(list 1000000)
+```
