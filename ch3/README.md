@@ -754,3 +754,18 @@ b)
 # 3.42
 
 安全。
+
+# 3.43
+
+```text
+a: 10
+b: 20
+c: 30
+
+Pac1: (define diffac -20) ;; (- 10 30)
+Pac2: ((a 'withdraw) diffac) ;; a: 30
+Pab1: (define diffab 10) ;; (- 30 20)
+Pac3: ((c 'deposit) diffac) ;; c: 10
+Pab2: ((a 'withdraw) diffab) ;; a: 40
+Pab3: ((b 'deposit) diffab) ;; b: 10
+```
