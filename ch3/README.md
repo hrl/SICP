@@ -769,3 +769,7 @@ Pab2: ((a 'withdraw) diffab) ;; a: 40
 Pac3: ((c 'deposit) diffac) ;; c: 10
 Pab3: ((b 'deposit) diffab) ;; b: 10
 ```
+
+# 3.44
+
+不是，交换需要保持两个账户的同步状态，转移不需要。
