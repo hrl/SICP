@@ -777,3 +777,14 @@ Pab3: ((b 'deposit) diffab) ;; b: 10
 # 3.45
 
 这样做在`serialized-exchange`中会产生重复嵌套的序列化对象，导致内层对象进入无法修改数据。
+
+# 3.46
+
+```text
+P1a: (define tmp1 cell)
+P2a: (define tmp2 cell)
+P1b: (set! cell true)
+P2b: (set! cell true)
+
+导致P1 & P2 均获得互斥元
+```
