@@ -898,3 +898,56 @@ P2b: (set! cell true)
        (apply stream-map
               (cons proc (map stream-cdr argstreams))))))
 ```
+
+# 3.51
+
+```scheme
+;; promise
+(define x (stream-map show (stream-enumerate-interval 0 10)))
+;
+;0
+;Value: x
+
+(stream-ref x 5)
+;
+;1
+;2
+;3
+;4
+;5
+;Value: 5
+
+(stream-ref x 7)
+;
+;6
+;7
+;Value: 7
+
+;; non-memozied stream
+(define x (stream-map show (stream-enumerate-interval 0 10)))
+;
+;0
+;Value: x
+
+(stream-ref x 5)
+;
+;0
+;1
+;2
+;3
+;4
+;5
+;Value: 5
+
+(stream-ref x 7)
+;
+;0
+;1
+;2
+;3
+;4
+;5
+;6
+;7
+;Value: 7
+```
