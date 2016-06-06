@@ -951,3 +951,31 @@ P2b: (set! cell true)
 ;7
 ;Value: 7
 ```
+
+# 3.52
+
+```scheme
+;; promise
+(define seq (stream-map accum (stream-enumerate-interval 1 20)))
+;   1, (+ sum 1), seq: 1
+(define y (stream-filter even? seq))
+;   6, (+ sum 2 3), seq: 1->3->6
+(define z (stream-filter (lambda (x) (= (remainder x 5) 0)) seq))
+;  10, (+ sum 4), seq: 6->10
+(stream-ref y 7)
+; 136, (+ sum 5 6 7 ... 16)
+(display-stream z)
+; 210, (+ sum 17 18 19 20)
+
+;; non-memozied stream
+(define seq (stream-map accum (stream-enumerate-interval 1 20)))
+;   1, (+ sum 1), seq: 1
+(define y (stream-filter even? seq))
+;   6, (+ sum 2 3), seq: 1->3->6
+(define z (stream-filter (lambda (x) (= (remainder x 5) 0)) seq))
+;  15, (+ sum 2 3 4), seq: 6->8->11->15
+(stream-ref y 7)
+; 134, (+ sum 2 3 4 ... 15), seq: 15->17->20->24->...->134
+(display-stream z)
+; 343, (+ sum 2 3 4 ... 20), seq: 134->139->143->...->343
+```
