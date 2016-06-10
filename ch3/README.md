@@ -993,3 +993,12 @@ P2b: (set! cell true)
 
 (define factorials (cons-stream 1 (mul-streams factorials (stream-cdr integers))))
 ```
+
+# 3.55
+
+```scheme
+(define (partial-sums s)
+  (define sums
+    (cons-stream (stream-car s) (add-streams sums (stream-cdr s))))
+  sums)
+```
