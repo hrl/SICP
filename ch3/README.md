@@ -985,3 +985,11 @@ P2b: (set! cell true)
 ```scheme
 (1 2 4 8 ...)
 ```
+
+# 3.54
+
+```scheme
+(define (mul-streams s1 s2) (stream-map * s1 s2))
+
+(define factorials (cons-stream 1 (mul-streams factorials (stream-cdr integers))))
+```
