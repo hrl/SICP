@@ -1002,3 +1002,9 @@ P2b: (set! cell true)
     (cons-stream (stream-car s) (add-streams sums (stream-cdr s))))
   sums)
 ```
+
+# 3.56
+
+```scheme
+(define S (cons-stream 1 (merge (scale-stream S 2) (merge (scale-stream S 3) (scale-stream S 5)))))
+```
