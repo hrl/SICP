@@ -1012,3 +1012,10 @@ P2b: (set! cell true)
 # 3.57
 
 只需n次(`promise`不会重复计算)，如果不用`memo-proc`优化会导致树形的`add-streams`展开。
+
+# 3.58
+
+```scheme
+(expand 1 7 10) ; 1 4 2 8 5 7 1 4 ....
+(expand 3 8 10) ; 3 7 5 0 0 ...
+```
