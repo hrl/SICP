@@ -1019,3 +1019,18 @@ P2b: (set! cell true)
 (expand 1 7 10) ; 1 4 2 8 5 7 1 4 ....
 (expand 3 8 10) ; 3 7 5 0 0 ...
 ```
+
+# 3.59
+
+```scheme
+;; a
+(define (integrate-series s)
+  (div-streams s integers))
+
+;; b
+(define cosine-series
+  (cons-stream 1 (scale-stream (integrate-series sine-series) -1)))
+
+(define sine-series
+  (cons-stream 1 (integrate-series cosine-series)))
+```
