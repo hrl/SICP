@@ -1008,3 +1008,7 @@ P2b: (set! cell true)
 ```scheme
 (define S (cons-stream 1 (merge (scale-stream S 2) (merge (scale-stream S 3) (scale-stream S 5)))))
 ```
+
+# 3.57
+
+只需n次(`promise`不会重复计算)，如果不用`memo-proc`优化会导致树形的`add-streams`展开。
