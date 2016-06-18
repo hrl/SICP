@@ -1035,7 +1035,7 @@ P2b: (set! cell true)
   (cons-stream 0 (integrate-series cosine-series)))
 ```
  
- # 3.60
+# 3.60
  
  ```scheme
 (define (mul-series a b)
@@ -1052,3 +1052,14 @@ P2b: (set! cell true)
 ;;  ...
 ;; )
  ```
+
+# 3.61
+
+```scheme
+(define (inv-series s)
+  (define x
+    (cons-stream 1
+                 (scale-stream (mul-series (stream-cdr s) x)
+                               -1)))
+  x)
+```
