@@ -1076,3 +1076,7 @@ P2b: (set! cell true)
                                                             (/ 1 den-const)))
                                   den-const)))))
 ```
+
+# 3.63
+
+`(sqrt-stream x)`会返回一个新的stream，导致无法充分利用到`memo-proc`的优化。无`memo-proc`时没有差异。
