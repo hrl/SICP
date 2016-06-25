@@ -1123,3 +1123,15 @@ ln2-accelerated-euler-stream
 # 3.66
 
 `(1, 100)`前有(100-1-1)*2+1=197个序对，`(100, 100)`前有2^100-1-1个序对
+
+# 3.67
+
+```scheme
+(define (pairs s t)
+  (cons-stream
+   (list (stream-car s) (stream-car t))
+   (interleave
+    (stream-map (lambda (x) (list (stream-car s) x))
+                (stream-cdr t))
+    (pairs (stream-cdr s) t))))
+```
