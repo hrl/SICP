@@ -1135,3 +1135,7 @@ ln2-accelerated-euler-stream
                 (stream-cdr t))
     (pairs (stream-cdr s) t))))
 ```
+
+# 3.68
+
+会陷入对`pairs`的无限递归调用中。
