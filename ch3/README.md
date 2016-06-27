@@ -1139,3 +1139,21 @@ ln2-accelerated-euler-stream
 # 3.68
 
 会陷入对`pairs`的无限递归调用中。
+
+# 3.69
+
+```scheme
+(define (triples s t u)
+  (cons-stream
+   (list (stream-car s) (stream-car t) (stream-car u))
+   (interleave
+    (stream-map (lambda (x) (cons (stream-car s) x))
+                (stream-cdr (pairs t u)))
+    (triples (stream-cdr s) (stream-cdr t) (stream-cdr u)))))
+
+(define (phythagorean)
+  (stream-filter (lambda (x) (= (+ (square (car x))
+                                   (square (cadr x)))
+                                (square (caddr x))))
+                 (triples integers integers integers)))
+```
