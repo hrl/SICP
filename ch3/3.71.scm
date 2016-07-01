@@ -24,23 +24,6 @@
                                (stream-cdr t))
                    (weighted-pairs weight (stream-cdr s) (stream-cdr t)))))
 
-(define (integer-pairs-1)
-  (weighted-pairs (lambda (p) (+ (car p) (cadr p)))
-                  integers
-                  integers))
-
-(define (integer-pairs-2)
-  (define integers-2-3-5
-    (stream-filter (lambda (x) (or (= (remainder x 2) 0)
-                                   (= (remainder x 3) 0)
-                                   (= (remainder x 5) 0)))
-                   integers))
-  (weighted-pairs (lambda (p) (let ((i (car p))
-                                    (j (cadr p)))
-                                (+ (* 2 i) (* 3 j) (* 5 i j))))
-                  integers-2-3-5
-                  integers-2-3-5))
-
 (define (ramanujan)
   (define (cube x)
     (* x x x))
