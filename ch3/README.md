@@ -1235,3 +1235,41 @@ ln2-accelerated-euler-stream
 ;; 32832
 ;; 39312
 ```
+
+# 3.72
+
+```scheme
+(define (ramanujan-weight-n weight n)
+  (define (filter weight-last items s)
+    (if (stream-null? s)
+        (if (>= (length items) n)
+            (cons-stream (list weight-last items) s)
+            s)
+        (let* ((s-car (stream-car s))
+               (s-cdr (stream-cdr s))
+               (weight-car (weight s-car)))
+          (if (= weight-car weight-last)
+              (filter weight-last (cons s-car items) s-cdr)
+              (if (>= (length items) n)
+                  (cons-stream (list weight-last (cons s-car items)) (filter weight-car (cons s-car '()) s-cdr))
+                  (filter weight-car (cons s-car '()) s-cdr))))))
+  (filter 0
+          '()
+          (weighted-pairs weight
+                          integers
+                          integers)))
+
+(define (ramanujan-square-3)
+  (define (weight item)
+    (let ((i (car item))
+          (j (cadr item)))
+      (+ (square i) (square j))))
+  (ramanujan-weight-n weight 3))
+
+(ramanujan-square-3)
+;; (325 ((2 18) (1 18) (6 17) (10 15)))
+;; (425 ((12 17) (5 20) (8 19) (13 16)))
+;; (650 ((13 22) (5 25) (11 23) (17 19)))
+;; (725 ((17 21) (7 26) (10 25) (14 23)))
+;; (845 ((8 28) (2 29) (13 26) (19 22)))
+```
