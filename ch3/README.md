@@ -1273,3 +1273,12 @@ ln2-accelerated-euler-stream
 ;; (725 ((17 21) (7 26) (10 25) (14 23)))
 ;; (845 ((8 28) (2 29) (13 26) (19 22)))
 ```
+
+# 3.73
+
+```scheme
+(define (RC R C dt)
+  (lambda (i v0)
+    (add-streams (integral i v0 (/ dt C))
+                 (scale-stream i R))))
+```
