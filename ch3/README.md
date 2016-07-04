@@ -1282,3 +1282,10 @@ ln2-accelerated-euler-stream
     (add-streams (integral i v0 (/ dt C))
                  (scale-stream i R))))
 ```
+
+# 3.74
+
+```scheme
+(define zero-crossings
+  (stream-map sign-change-detector sense-data (cons-stream 0 sense-data)))
+```
