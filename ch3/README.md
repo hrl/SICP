@@ -1300,3 +1300,16 @@ ln2-accelerated-euler-stream
                                       (stream-car input-stream)
                                       avpt))))
 ```
+
+# 3.76
+
+```scheme
+(define (smooth s)
+  (define (iter s last-value)
+    (if (stream-null? s)
+        s
+        (cons-stream (/ (+ (stream-car s) last-value) 2)
+                     (iter (stream-cdr s)
+                           (stream-car s)))))
+  (iter s 0))
+```
