@@ -1389,3 +1389,36 @@ ln2-accelerated-euler-stream
                  (stream-map random-updater random-numbers requests)))
   (stream-cdr random-numbers))
 ```
+
+# 3.82
+
+```scheme
+(define (random-in-range low high)
+  (let ((range (- high low)))
+    (+ low (random range))))
+
+(define (monte-carlo experiment-stream)
+  (define (next experiment-stream trials-passed trials-all)
+    (cons-stream (/ trials-passed trials-all)
+                 (cond ((stream-null? experiment-stream)
+                        the-empty-stream)
+                       ((stream-car experiment-stream)
+                        (next (stream-cdr experiment-stream) (+ trials-passed 1) (+ trials-all 1)))
+                       (else
+                        (next (stream-cdr experiment-stream) (+ trials-passed 0) (+ trials-all 1))))))
+  (next (stream-cdr experiment-stream) (if (stream-car experiment-stream) 1 0) 1))
+
+(define (estimate-integral P x1 x2 y1 y2)
+  (define (experiment)
+    (let ((x (random-in-range x1 x2))
+          (y (random-in-range y1 y2)))
+      (P x y)))
+  (define (experiment-stream)
+    (cons-stream (experiment)
+                 (experiment-stream)))
+  (let ((size (* (- x2 x1) (- y2 y1))))
+    (scale-stream (monte-carlo (experiment-stream)) size)))
+
+(define (P x y)
+  (<= (+ (square (- x 5)) (square (- y 7))) (square 3)))
+```
