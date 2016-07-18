@@ -1,6 +1,3 @@
-# 4.1
-
-```scheme
 (define (list-of-values-left-to-right exps env)
   (if (no-operands? exps)
       '()
@@ -14,4 +11,3 @@
       (let ((right (list-of-values-right-to-left (rest-operands exps) env)))
         (let ((left (eval (first-operand exps env))))
           (cons left right)))))
-```
