@@ -15,3 +15,12 @@
         (let ((left (eval (first-operand exps env))))
           (cons left right)))))
 ```
+
+# 4.2
+
+`(define x 3)`会先被`application?`匹配到
+
+```scheme
+(define (application? exp)
+  (tagged-list? exp 'call))
+```
