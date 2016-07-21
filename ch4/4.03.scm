@@ -30,8 +30,8 @@
 
 (define *syntax-table* (make-table))
 
-(define get (*syntax-table* 'lookup-proc))
-(define put (*syntax-table* 'insert-proc!))
+(define get (*_eval-table* 'lookup-proc))
+(define put (*_eval-table* 'insert-proc!))
 
 (define (get-tag exp)
   (if (pair? exp)
@@ -44,7 +44,7 @@
         ((procedure? (get 'syntax (exp-tag exp)))
          (get 'syntax (exp-tag)) exp env)
         ((application? exp)
-         (apply (_eval (operator exp) env)
+         (_apply (_eval (operator exp) env)
                 (list-of-values (oprands exp) env)))
         (else
          (error "Unknown expression type -- _EVAL" exp))))

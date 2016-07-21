@@ -34,7 +34,7 @@
         ((procedure? (get 'syntax (exp-tag exp)))
          (get 'syntax (exp-tag)) exp env)
         ((application? exp)
-         (apply (_eval (operator exp) env)
+         (_apply (_eval (operator exp) env)
                 (list-of-values (oprands exp) env)))
         (else
          (error "Unknown expression type -- _EVAL" exp))))
