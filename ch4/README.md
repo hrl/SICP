@@ -74,3 +74,14 @@
 (define (eval-or exp env)
   (eval (or->if (cdr exp)) env))
 ```
+
+# 4.5
+
+```scheme
+(define (cond-actions clause)
+  (if (pair? (cdr clause))
+      (if (eq? '=> (cadr clause))
+          (cddr clause)
+          (error "Invalid cond clause -- COND-ACTIONS" clause))
+      (cdr clause)))
+```
