@@ -108,3 +108,20 @@
 (define (eval-let let-exp env)
   (eval (let->combination let-exp) env))
 ```
+
+# 4.7
+
+```scheme
+(define (make-let parameters body)
+  (cons 'let (cons parameters body)))
+
+(define (let*->nested-lets exp)
+  (car
+   (accumulate
+    (lambda (paramater body) (list (make-let (list paramater) body)))
+    (list (make-let () (let-body exp)))
+    (let-parameters exp))))
+
+(define (eval-let* exp env)
+  (eval (let*->nested-lets exp) env))
+```
