@@ -45,7 +45,10 @@
 (define (named-let->combination named-let-exp)
   (make-begin
    (list
-    `(define ,(let-var named-let-exp) ,(make-lambda (let-binding-vars named-let-exp) (let-body named-let-exp)))
+    `(define ,(let-var named-let-exp)
+       ,(make-lambda
+         (let-binding-vars named-let-exp)
+         (let-body named-let-exp)))
     `(,(let-var named-let-exp) ,@(let-binding-values named-let-exp)))))
 
 (define (let->combination let-exp)
