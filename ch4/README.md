@@ -125,3 +125,40 @@
 (define (eval-let* exp env)
   (eval (let*->nested-lets exp) env))
 ```
+
+# 4.8
+
+```scheme
+(define (named-let? let-exp)
+  (and (tagged-list? let-exp 'let)
+       (symbol? (cadr let-exp))))
+
+(define (let-var let-exp)
+  (cadr let-exp))
+
+(define (let-bindings let-exp)
+  (caddr let-exp))
+
+(define (let-binding-vars let-exp)
+  (map car (let-bindings let-exp)))
+
+(define (let-binding-values let-exp)
+  (map cadr (let-bindings let-exp)))
+
+(define (let-body let-exp)
+  (if (named-let? let-exp)
+      (cdddr let-exp)
+      (cddr let-exp)))
+
+(define (named-let->combination named-let-exp)
+  (make-begin
+   (list
+    `(define ,(let-var named-let-exp) ,(make-lambda (let-binding-vars named-let-exp) (let-body named-let-exp)))
+    `(,(let-var named-let-exp) ,@(let-binding-values named-let-exp)))))
+
+(define (let->combination let-exp)
+  (if (named-let? let-exp)
+      (named-let->combination let-exp)
+      (cons (make-lambda (let-parameter-vars let-exp) (let-body let-exp))
+            (let-parameter-values let-exp))))
+```
