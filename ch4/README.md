@@ -305,3 +305,27 @@
         (add-binding-to-frame! var val frame)
         (set-cdr! (car frame) val))))
 ```
+
+# 4.13
+
+```scheme
+(define (make-unbound! var env)
+  (define (scan vars vals)
+    (cond ((null? vars)
+           #f)
+          ((eq? (cadr vars) var)
+           (set-cdr! vars (cddr vars))
+           (set-cdr! vals (cddr vals)))
+          (else
+           (scan (cdr vars) (cdr vals)))))
+  (let* ((frame (first-frame env))
+         (vars (car frame))
+         (vals (cdr frame)))
+    (cond ((null? vars)
+           #f)
+          ((eq? (car vars) var)
+           (set-car! frame (cdr vars))
+           (set-cdr! frame (cdr vals)))
+          (else
+           (scan vars vals)))))
+```
